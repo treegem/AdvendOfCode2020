@@ -1,13 +1,9 @@
+import os
+
 from day3.day3 import *
 from util.file_handling import read_file
 
-
-def test_read_file():
-    result = read_file('test_input_two_lines.txt')
-
-    assert len(result) == 2
-    assert result[0].strip() == '.........#....#.###.........##.'
-    assert result[1].strip() == '..###.#......#......#.......##.'
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def test_get_line_length():
@@ -39,7 +35,7 @@ def test_advance_x_position__with_line_break():
 
 
 def test_count_tress__slope_3():
-    lines = read_file('test_input')
+    lines = read_file(os.path.join(ROOT_DIR, 'test_input'))
 
     result = count_trees(lines, 3)
 
@@ -55,6 +51,6 @@ def test_multiply_all_list_values():
 
 
 def test_solve_part_two():
-    result = solve_part_two('test_input')
+    result = solve_part_two(os.path.join(ROOT_DIR, 'test_input'))
 
     assert result == 336
