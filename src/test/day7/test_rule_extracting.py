@@ -1,6 +1,6 @@
 import pytest
 
-from day7.day7 import *
+from day7.rule_extracting import *
 
 example_input = ['vibrant bronze bags contain 3 dim olive bags.',
                  'shiny teal bags contain 1 posh green bag, 5 pale indigo bags, 1 mirrored purple bag.']
