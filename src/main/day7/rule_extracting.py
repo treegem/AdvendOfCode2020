@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from InnerBag import InnerBag
+from day7.InnerBag import InnerBag
 
 
 def extract_rules(raw_rules: List[str]) -> Dict[str, List[InnerBag]]:

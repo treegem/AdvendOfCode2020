@@ -1,7 +1,7 @@
 from typing import List, Dict
 
-from InnerBag import InnerBag
-from rule_extracting import extract_rules
+from day7.InnerBag import InnerBag
+from day7.rule_extracting import extract_rules
 from util.file_handling import read_file_stripped
 
 
@@ -24,7 +24,7 @@ def find_possible_outer_bags(inner_bag: str, rules: Dict[str, List[InnerBag]]) -
     return possible_outer_bags
 
 
-def solve_part_one(file_input: List[str]):
+def solve_part_one(file_input: List[str]) -> int:
     extracted_rules = extract_rules(file_input)
     possible_outer_bags = find_possible_outer_bags('shiny gold bag', extracted_rules)
 
@@ -33,6 +33,23 @@ def solve_part_one(file_input: List[str]):
     return n_possible_outer_bags
 
 
+def count_contained_bags(bag: str, rules: Dict[str, List[InnerBag]]) -> int:
+    inner_bags = rules[bag] if bag in rules else []
+    if inner_bags:
+        return sum(inner_bag.amount * (1 + count_contained_bags(inner_bag.name, rules)) for inner_bag in inner_bags)
+    else:
+        return 0
+
+
+def solve_part_two(file_input: List[str]):
+    extracted_rules = extract_rules(file_input)
+    number_of_contained_bags = count_contained_bags('shiny gold bag', extracted_rules)
+
+    print('solution part two: ', number_of_contained_bags)
+    return number_of_contained_bags
+
+
 if __name__ == '__main__':
     bag_rules = read_file_stripped('input.txt')
     solve_part_one(bag_rules)
+    solve_part_two(bag_rules)
